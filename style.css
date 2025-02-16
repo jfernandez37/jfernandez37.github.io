@@ -140,6 +140,27 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed; /* Keeps it fixed while scrolling */
 }
+.booking-button-container {
+    text-align: center;
+    margin-top: 20px; /* Adjusts spacing so it's closer to the search bar */
+}
+
+.booking-button {
+    display: inline-block;
+    background-color: #0465aa;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.booking-button:hover {
+    background-color: #034c87;
+    transform: scale(1.05);
+}
 
 
 
