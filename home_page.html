@@ -10,10 +10,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function logout() {
+            localStorage.removeItem("isSignedIn");
+            window.location.href = "sign_in.html"; // Redirect to sign-in page
+        }
+    </script>
     <div class="topnav">
         <a class="active" href="home_page.html">Home</a>
-        <a href="sign_in.html">Sign in</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
     </div>
+    <script>
+        if (localStorage.getItem('isSignedIn')){
+            document.getElementById('signin').style.display='none';
+        }
+        else{
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -30,6 +47,11 @@
         }
     </style>
 </head>
+<style>
+    body {
+        padding-top: 60px;
+    }
+</style>
 <body>
     <div class="home_page_header">
         <div class="text-box">
@@ -78,16 +100,42 @@
     });
 </script>
 
-<!--    <div class="card">-->
-<!--        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:10%">-->
-<!--        <div class="container">-->
-<!--            <h4><b>John Doe</b></h4>-->
-<!--            <p>Architect & Engineer</p>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="container mt-4">
+        <h2 class="text-center">Available Homes for Rent</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/cozy_cabin.jpg" class="card-img-top" alt="Cozy Cabin">
+                    <div class="card-body">
+                        <h5 class="card-title">Cozy Cabin in the Woods</h5>
+                        <p class="card-text">$120/night</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/beachfront_villa.jpg" class="card-img-top" alt="Beachfront Villa">
+                    <div class="card-body">
+                        <h5 class="card-title">Beachfront Villa</h5>
+                        <p class="card-text">$250/night</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/modern_city_apartment.jpg" class="card-img-top" alt="Modern City Apartment">
+                    <div class="card-body">
+                        <h5 class="card-title">Modern City Apartment</h5>
+                        <p class="card-text">$180/night</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 
 </html>
