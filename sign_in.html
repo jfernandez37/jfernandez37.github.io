@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="style.css">
     <div class="topnav">
         <a class="active" href="home_page.html">Home</a>
-        <a href="sign_in.html">Sign in</a>
     </div>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,13 +36,19 @@
             <div class="col-4"></div>
             <div class="col-3">
                 <div class="text-center">
-                    <form class="form-signin" method="post" action="home_page.html">
+                    <script>
+                        function signIn() {
+                            localStorage.setItem("isSignedIn", "true");
+                            window.location.href = "home_page.html"; // Redirect to dashboard
+                        }
+                    </script>
+                    <form class="form-signin" method="post" action="home_page.html", onsubmit="signIn(); return false;">
                         <div class="imageRound">
                             <img class="mb-4" src="https://images.freeimages.com/clg/images/37/372305/house-silhouette-clip-art_f.jpg?fmt=webp&h=350" alt="" width="128" height="128">
                         </div>
-                        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+                        <h1 class="text-box" style="color: white">Sign In</h1>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="username" id="inputEmail" name='username'class="form-control" placeholder="Username" required autofocus>
+                        <input type="email" id="inputEmail" name='email' class="form-control" placeholder="Email" required autofocus>
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
                         <div class="checkbox mb-3">
