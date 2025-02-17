@@ -6,223 +6,122 @@
     <title>Schedule a Booking</title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    /* Ensure the top navigation bar doesn't stretch the layout */
-    .topnav {
-        background-color: #ddd;
-        overflow: hidden;
-    }
-    
-    /* Style the links inside the navigation bar */
-    .topnav a {
-        float: left;
-        color: #333;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-    
-    /* Change the color of links on hover */
-    .topnav a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-    
-    /* Add a color to the active/current link */
-    .topnav a.active {
-        background-color: #0465aa;
-        color: white;
-    }
-    
-    /* Center the content and keep the calendar at the bottom */
-    .schedule-container {
-    text-align: center;
-    padding-bottom: 10px; /* Space between header and calendar */
-}
-    .schedule-container h1 {
-        margin-bottom: 20px;
-    }
-    
-    /* Calendar container styles */
-    .calendar-container {
-        position: relative;
-        width: 80%;
-        max-width: 600px;
-        height: auto;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 12px;
-        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-        border: 2px solid #ddd;
-        margin: 40px auto 20px auto;
-        backdrop-filter: blur(5px);
-    }
-    
-    /* Calendar styling */
-    .fc-toolbar {
-        background-color: #0465aa;
-        color: white;
-        border-radius: 8px;
-        padding: 10px;
-    }
-    
-    .fc-toolbar-title {
-        font-size: 20px;
-        font-weight: bold;
-    }
-    
-    .fc-button {
-        background-color: #0465aa !important;
-        border: none !important;
-        color: white !important;
-        border-radius: 6px !important;
-        padding: 5px 10px !important;
-    }
-    
-    .fc-button:hover {
-        background-color: #034c87 !important;
-    }
-    
-    .fc-daygrid-day {
-        border: 1px solid #ddd !important;
-    }
-    
-    .fc-day-today {
-        background: rgba(4, 101, 170, 0.2) !important;
-        border-radius: 6px;
-    }
-    
-    .fc-event {
-        background-color: #f44336 !important;
-        border: none !important;
-        color: white !important;
-        border-radius: 5px;
-        padding: 5px;
-        font-size: 14px;
-    }
-    
-    #booking-calendar {
-    width: 80%;
-    max-width: 1000px;
-    flex-grow: 1;  /* Allows calendar to take up remaining space */
-    height: calc(100vh - 200px); /* Adjusted for navbar and header */
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 0 auto; /* Center the calendar */
-}
 
-    /* Toast for confirmation message */
-    .toast {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: #0465aa;
-        color: #fff;
-        text-align: center;
-        border-radius: 2px;
-        padding: 16px;
-        position: fixed;
-        z-index: 1;
-        left: 50%;
-        bottom: 30px;
-    }
-    
-    .toast.show {
-        visibility: visible;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-    
-    @keyframes fadein {
-        from {bottom: 0; opacity: 0;} 
-        to {bottom: 30px; opacity: 1;}
-    }
-    
-    @keyframes fadeout {
-        from {bottom: 30px; opacity: 1;} 
-        to {bottom: 0; opacity: 0;}
-    }
-    
-    /* Modal styles */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-    
-    .modal-content {
-        background-color: white;
-        margin: 15% auto;
-        padding: 20px;
-        border-radius: 8px;
-        width: 60%;
-        max-width: 400px;
-    }
-    
-    .close-btn {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-    
-    .close-btn:hover,
-    .close-btn:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    
-    .booking-confirm-btn {
-        background-color: #0465aa;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    
-    .booking-confirm-btn:hover {
-        background-color: #034c87;
-    }
-    
-    .available-time-slots {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .time-slot {
-        background-color: #0465aa;
-        color: white;
-        padding: 8px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    .time-slot:hover {
-        background-color: #034c87;
-    }
-</style>    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .topnav a {
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0 10px;
+        }
+
+        .topnav a:hover, .topnav a.active {
+            background-color: #0465aa;
+            border-radius: 5px;
+        }
+
+        .schedule-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .calendar-container {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .fc-toolbar {
+            background-color: #0465aa;
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .fc-button {
+            background-color: #0465aa !important;
+            border: none !important;
+            color: white !important;
+            border-radius: 6px !important;
+            padding: 5px 10px !important;
+        }
+
+        .fc-button:hover {
+            background-color: #034c87 !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 60%;
+            max-width: 400px;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+        .booking-confirm-btn {
+            background-color: #0465aa;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .booking-confirm-btn:hover {
+            background-color: #034c87;
+        }
+    </style>
 </head>
 <body>
 
     <div class="topnav">
         <a href="home_page.html">Home</a>
-        <a class="active" href="schedule.html">Schedule</a>
+        <a class="active" href="schedule_booking.html">Schedule Booking</a>
         <a href="booking_confirmation.html">Booking Confirmation</a>
         <a href="contact.html">Contact</a>
         <a href="faqs.html">FAQs</a>
@@ -230,7 +129,9 @@
 
     <div class="schedule-container">
         <h1>Schedule Your Booking</h1>
-        <div id="booking-calendar"></div>
+        <div class="calendar-container">
+            <div id="booking-calendar"></div>
+        </div>
     </div>
 
     <!-- Modal for booking details -->
@@ -247,9 +148,6 @@
             <button class="booking-confirm-btn">Confirm Booking</button>
         </div>
     </div>
-
-    <!-- Toast for confirmation message -->
-    <div id="toast" class="toast">Booking confirmed! Check your email for details.</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -268,8 +166,8 @@
 
                     var bookingBtn = document.getElementsByClassName('booking-confirm-btn')[0];
                     bookingBtn.onclick = function() {
-                        showToast("Booking confirmed! Check your email for details.");
-                        modal.style.display = "none"; // Hide modal after booking
+                        alert("Booking confirmed!");
+                        modal.style.display = "none";
                     }
                 },
                 events: [
@@ -278,16 +176,6 @@
             });
             calendar.render();
         });
-
-        // Show toast notification
-        function showToast(message) {
-            var toast = document.getElementById("toast");
-            toast.innerText = message;
-            toast.className = "toast show";
-            setTimeout(function() {
-                toast.className = toast.className.replace("show", "");
-            }, 3000);
-        }
     </script>
 
 </body>
