@@ -1,0 +1,141 @@
+<!-- properties_listings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Properties</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .topnav a {
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0 10px;
+        }
+
+        .topnav a:hover, .topnav a.active {
+            background-color: #0465aa;
+            border-radius: 5px;
+        }
+
+        .properties-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .properties-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .property {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .property img {
+            width: 250px;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .property h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .property p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .property button {
+            background-color: #0465aa;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .property button:hover {
+            background-color: #034c87;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a class="active" href="property_listings.html">Properties</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    
+    <div class="properties-container">
+        <h1>Available Properties</h1>
+        <div class="property">
+            <img src="/mnt/data/beachfront_villa.jpg" alt="Beachfront Villa">
+            <div>
+                <h2>Beachfront Villa</h2>
+                <p>Price: $250/night</p>
+                <button>View Details</button>
+            </div>
+        </div>
+        <div class="property">
+            <img src="/mnt/data/cozy_cabin.jpg" alt="Cozy Cabin">
+            <div>
+                <h2>Cozy Cabin</h2>
+                <p>Price: $180/night</p>
+                <button>View Details</button>
+            </div>
+        </div>
+        <div class="property">
+            <img src="/mnt/data/modern_city_apartment.jpg" alt="Modern City Apartment">
+            <div>
+                <h2>Modern City Apartment</h2>
+                <p>Price: $300/night</p>
+                <button>View Details</button>
+            </div>
+        </div>
+        <div class="property">
+            <img src="/mnt/data/vacation_home.jpg" alt="Lakefront Retreat">
+            <div>
+                <h2>Lakefront Retreat</h2>
+                <p>Price: $220/night</p>
+                <button>View Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

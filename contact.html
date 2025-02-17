@@ -1,0 +1,114 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .topnav a {
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0 10px;
+        }
+
+        .topnav a:hover, .topnav a.active {
+            background-color: #0465aa;
+            border-radius: 5px;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .contact-container p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .contact-form {
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .contact-form button {
+            background-color: #0465aa;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .contact-form button:hover {
+            background-color: #034c87;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <a href="home.html">Home</a>
+        <a href="property_listings.html">Properties</a>
+        <a href="booking_confirmation.html">Booking</a>
+        <a class="active" href="contact.html">Contact</a>
+    </div>
+    
+    <div class="contact-container">
+        <h1>Contact & Support</h1>
+        <p>If you have any questions or need help with your booking, please reach out to us.</p>
+        <form class="contact-form">
+            <label>Name</label>
+            <input type="text" placeholder="Your Name" required>
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" required>
+            <label>Message</label>
+            <textarea placeholder="Your message..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>
