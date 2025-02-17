@@ -1,10 +1,10 @@
-<!-- contact.html -->
+<!-- property_details.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Support</title>
+    <title>Property Details</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -34,8 +34,8 @@
             border-radius: 5px;
         }
 
-        .contact-container {
-            max-width: 800px;
+        .property-container {
+            max-width: 900px;
             margin: 50px auto;
             padding: 20px;
             background: white;
@@ -44,35 +44,29 @@
             text-align: center;
         }
 
-        .contact-container p {
+        .property-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .property-info {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .property-info h2 {
+            color: #333;
+        }
+
+        .property-info p {
             font-size: 16px;
             color: #555;
+            line-height: 1.6;
         }
 
-        .contact-form {
-            text-align: left;
-        }
-
-        .contact-form label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .contact-form textarea {
-            height: 120px;
-            resize: none;
-        }
-
-        .contact-form button {
+        .book-now {
             background-color: #0465aa;
             color: white;
             padding: 12px 20px;
@@ -80,35 +74,35 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
-            margin-top: 15px;
-            width: 100%;
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            text-align: center;
         }
 
-        .contact-form button:hover {
+        .book-now:hover {
             background-color: #034c87;
         }
     </style>
 </head>
 <body>
     <div class="topnav">
-        <a href="home.html">Home</a>
+        <a href="home_page.html">Home</a>
         <a href="property_listings.html">Properties</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
         <a href="booking_confirmation.html">Booking Confirmation</a>
-        <a class="active" href="contact.html">Contact</a>
+        <a href="contact.html">Contact</a>
     </div>
     
-    <div class="contact-container">
-        <h1>Contact & Support</h1>
-        <p>If you have any questions or need help with your booking, please reach out to us.</p>
-        <form class="contact-form">
-            <label>Name</label>
-            <input type="text" placeholder="Your Name" required>
-            <label>Email</label>
-            <input type="email" placeholder="your@email.com" required>
-            <label>Message</label>
-            <textarea placeholder="Your message..." required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+    <div class="property-container">
+        <img src="beachfront_villa.jpg" alt="Beachfront Villa">
+        <div class="property-info">
+            <h2>Beachfront Villa</h2>
+            <p><strong>Price:</strong> $250/night</p>
+            <p><strong>Location:</strong> Miami, FL</p>
+            <p>This luxurious beachfront villa offers stunning ocean views, a private pool, and spacious accommodations. Perfect for a relaxing vacation getaway.</p>
+            <button class="book-now">Book Now</button>
+        </div>
     </div>
 </body>
 </html>
