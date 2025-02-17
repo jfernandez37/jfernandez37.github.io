@@ -5,33 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-        }
-
-        .topnav {
-            background-color: #333;
-            overflow: hidden;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .topnav a {
-            color: white;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            margin: 0 10px;
-        }
-
-        .topnav a:hover, .topnav a.active {
-            background-color: #0465aa;
-            border-radius: 5px;
         }
 
         .faq-container {
@@ -68,14 +48,32 @@
     </style>
 </head>
 <body>
+    <script>
+        function logout() {
+            localStorage.removeItem("isSignedIn");
+            window.location.href = "sign_in.html"; // Redirect to sign-in page
+        }
+    </script>
     <div class="topnav">
         <a href="home_page.html">Home</a>
-        <a href="property_listings.html">Properties</a>
         <a href="schedule_booking.html">Schedule Booking</a>
         <a href="booking_confirmation.html">Booking Confirmation</a>
         <a href="contact.html">Contact</a>
         <a class="active" href="faqs.html">FAQs</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
     </div>
+
+    <script>
+        if (localStorage.getItem('isSignedIn') || localStorage.getItem("isSignedIn") === null){
+            document.getElementById('signin').style.display='none';
+        }
+        else{
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+    </script>
     
     <div class="faq-container">
         <h1>Frequently Asked Questions</h1>
