@@ -74,8 +74,8 @@
 <body>
 <script>
     function logout() {
-        localStorage.removeItem("isSignedIn");
-        window.location.href = "sign_in.html"; // Redirect to sign-in page
+        localStorage.setItem("isSignedIn", "false");
+        window.location.href = "sign_in.html";
     }
 </script>
 <div class="topnav">

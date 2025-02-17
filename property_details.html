@@ -68,23 +68,23 @@
 <body>
     <script>
         function logout() {
-            localStorage.removeItem("isSignedIn");
-            window.location.href = "sign_in.html"; // Redirect to sign-in page
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
         }
     </script>
     <div class="topnav">
-        <a class="active" href="home_page.html">Home</a>
+        <a href="home_page.html">Home</a>
         <a href="schedule_booking.html">Schedule Booking</a>
         <a href="booking_confirmation.html">Booking Confirmation</a>
         <a href="contact.html">Contact</a>
-        <a href="faqs.html">FAQs</a>
+        <a class="active" href="faqs.html">FAQs</a>
         <a id="signin" href="sign_in.html">Sign in</a>
         <a id="dashboard" href="home_owner_page.html">Dashboard</a>
         <a id="logout" href="logout.html" onclick="logout()">Logout</a>
     </div>
 
     <script>
-        if (localStorage.getItem('isSignedIn') || localStorage.getItem("isSignedIn") === null){
+        if (localStorage.getItem('isSignedIn') == "true" || localStorage.getItem("isSignedIn") == null){
             document.getElementById('signin').style.display='none';
         }
         else{
