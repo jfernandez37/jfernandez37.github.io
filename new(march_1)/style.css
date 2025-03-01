@@ -50,6 +50,7 @@ body, html {
 }
 
 .text-box {
+    margin-top: 20px;
     background: rgba(0, 0, 0, 0.5); /* Dark background */
     padding: 15px 30px;
     border-radius: 10px;
@@ -129,7 +130,8 @@ body, html {
     border-radius: 8px;
 }
 body {
-    background-image: url('images/vacation_home.jpg'); /* Apply background to entire page */
+    /*background-image: url('images/vacation_home.jpg'); !* Apply background to entire page *!*/
+    background-color: #eeeeee;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
