@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
+
+    <div class="topnav">
+        <a class="active" href="home_page.html">Home</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+    <script>
+        if (localStorage.getItem('isSignedIn') == "false"){
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+        else{
+            document.getElementById('signin').style.display='none';
+        }
+    </script>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <style>
+        img {
+            border-radius: 17%;
+        }
+        body {
+            padding-top: 60px;
+        }
+        .schedule-btn-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home_page_header">
+        <div class="text-box">
+            <p>Plan. Book. Relax.</p>
+        </div>
+        <form method="get">
+            <div class="row">
+                <div class="col-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Text input" name="q">
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-1">
+                    <input class="btn btn-sm btn-primary btn-block" type="submit">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Schedule Booking Button -->
+    <div class="schedule-btn-container">
+        <a href="schedule_booking.html" class="btn btn-primary btn-lg">Schedule Booking</a>
+    </div>
+
+    <div class="text-center container mt-4">
+        <a href="property_listings.html" class="font-weight-bold" style="font-size: 24px; color: lightblue; text-decoration: none;"> View Available Homes </a>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/cozy_cabin.jpg" class="card-img-top" alt="Cozy Cabin">
+                    <div class="card-body">
+                        <h5 class="card-title">Cozy Cabin in the Woods</h5>
+                        <p class="card-text">$120/night</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/beachfront_villa.jpg" class="card-img-top" alt="Beachfront Villa">
+                    <div class="card-body">
+                        <h5 class="card-title">Beachfront Villa</h5>
+                        <p class="card-text">$250/night</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="images/modern_city_apartment.jpg" class="card-img-top" alt="Modern City Apartment">
+                    <div class="card-body">
+                        <h5 class="card-title">Modern City Apartment</h5>
+                        <p class="card-text">$180/night</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

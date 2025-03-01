@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("isSignedIn") != "true") {
+                window.location.href = "sign_in.html"; // Redirect to sign-in if not signed in
+            }
+        };
+    </script>
+    <title>User Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('images/vacation_home.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+        }
+        .topnav {
+            background-color: #ddd;
+            overflow: hidden;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .topnav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        .topnav a.active {
+            background-color: #0465aa;
+            color: white;
+        }
+        button {
+            background-color: #0465aa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #034c87;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function logout() {
+        localStorage.setItem("isSignedIn", "false");
+        window.location.href = "sign_in.html";
+    }
+</script>
+<div class="topnav">
+    <a href="home_page.html">Home</a>
+    <a href="schedule_booking.html">Schedule Booking</a>
+    <a href="booking_confirmation.html">Booking Confirmation</a>
+    <a href="contact.html">Contact</a>
+    <a href="faqs.html">FAQs</a>
+    <a class="active" id="dashboard" href="home_owner_page.html">Dashboard</a>
+    <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+</div>
+
+<div class="container">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>Manage your bookings and rental properties here.</p>
+    <button onclick="window.location.href='manage_bookings.html'">Manage Bookings</button>
+    <button onclick="window.location.href='add_property.html'">Add New Property</button>
+    <button onclick="window.location.href='home_owner_settings.html'">Settings</button>
+</div>
+</body>
+</html>
