@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Property Listings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
+
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a class="active" href="listings.html">Listings</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+    <script>
+        if (localStorage.getItem('isSignedIn') == "false"){
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+        else{
+            document.getElementById('signin').style.display='none';
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #eeeeee;
+            padding: 20px;
+        }
+        .property-container {
+            max-width: 1200px;
+            margin-top: 60px;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container property-container">
+    <h2 class="text-center mb-4">Available Homes for Rent</h2>
+    <div class="row">
+        <!-- Generating 3 columns and 7 rows -->
+        <script>
+            let properties = [
+                {image: 'images/home1.jpg', title: 'Cozy Cottage', price: '$120/night'},
+                {image: 'images/home2.jpg', title: 'Beachfront Escape', price: '$200/night'},
+                {image: 'images/home3.jpg', title: 'Modern Loft', price: '$150/night'},
+                {image: 'images/home4.jpg', title: 'Luxury Villa', price: '$300/night'},
+                {image: 'images/home5.jpg', title: 'Mountain Retreat', price: '$180/night'},
+                {image: 'images/home6.jpg', title: 'Urban Apartment', price: '$130/night'},
+                {image: 'images/home7.jpg', title: 'Quiet Countryside', price: '$110/night'},
+                {image: 'images/home8.jpg', title: 'Seaside Bungalow', price: '$190/night'},
+                {image: 'images/home9.jpg', title: 'Classic Cabin', price: '$140/night'},
+                {image: 'images/home10.jpg', title: 'Elegant Townhouse', price: '$250/night'},
+                {image: 'images/home11.jpg', title: 'Rustic Farmhouse', price: '$160/night'},
+                {image: 'images/home12.jpg', title: 'Beach House', price: '$220/night'},
+                {image: 'images/home13.jpg', title: 'Hillside Haven', price: '$170/night'},
+                {image: 'images/home14.jpg', title: 'Skyline Penthouse', price: '$400/night'},
+                {image: 'images/home15.jpg', title: 'Lakeside Retreat', price: '$175/night'},
+                {image: 'images/home16.jpg', title: 'Tropical Paradise', price: '$280/night'},
+                {image: 'images/home17.jpg', title: 'Forest Lodge', price: '$150/night'},
+                {image: 'images/home18.jpg', title: 'Ski Chalet', price: '$200/night'},
+                {image: 'images/home19.jpg', title: 'Desert Getaway', price: '$135/night'},
+                {image: 'images/home20.jpg', title: 'Suburban Home', price: '$145/night'},
+                {image: 'images/home21.jpg', title: 'Bohemian Loft', price: '$195/night'}
+            ];
+
+            properties.forEach((property, index) => {
+                document.write(`
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="${property.image}" class="card-img-top" alt="${property.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${property.title}</h5>
+                                    <p class="card-text">${property.price}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

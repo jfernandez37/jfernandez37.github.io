@@ -5,7 +5,6 @@ body, html {
     flex-direction: column;
 }
 
-/* Add a black background color to the top navigation */
 .topnav {
     background-color: #ddd;
     overflow: hidden;
@@ -28,9 +27,8 @@ body, html {
     color: white;
 }
 
-
 .home_page_header {
-    flex: 1; /* Takes up remaining space */
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +37,6 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 
 .text-box p {
     font-size: 2em;
@@ -51,95 +48,28 @@ body, html {
 
 .text-box {
     margin-top: 20px;
-    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    background: rgba(0, 0, 0, 0.5);
     padding: 15px 30px;
     border-radius: 10px;
 }
 
 .home_page_header form {
-    width: 75%; /* Adjust form width */
+    width: 75%;
     text-align: center;
     margin-top: 10px;
 }
-.calendar-container {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    height: auto;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent */
-    border-radius: 12px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-    border: 2px solid #ddd;
-    margin: 40px auto 20px auto;
-    backdrop-filter: blur(5px); /* Adds a blur effect */
-}
 
-/* Improve Calendar Header */
-.fc-toolbar {
-    background-color: #0465aa; /* Matches navbar */
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
-}
-
-.fc-toolbar-title {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Calendar Buttons */
-.fc-button {
-    background-color: #0465aa !important;
-    border: none !important;
-    color: white !important;
-    border-radius: 6px !important;
-    padding: 5px 10px !important;
-}
-
-.fc-button:hover {
-    background-color: #034c87 !important;
-}
-
-/* Calendar Grid Styling */
-.fc-daygrid-day {
-    border: 1px solid #ddd !important;
-}
-
-.fc-day-today {
-    background: rgba(4, 101, 170, 0.2) !important;
-    border-radius: 6px;
-}
-
-/* Event Styling */
-.fc-event {
-    background-color: #f44336 !important; /* Red for booked dates */
-    border: none !important;
-    color: white !important;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 14px;
-}
-
-
-#booking-calendar {
-    width: 100%;
-    height: 300px; /* Keeps it compact */
-    max-height: 350px;
-    overflow: hidden;
-    border-radius: 8px;
-}
 body {
-    /*background-image: url('images/vacation_home.jpg'); !* Apply background to entire page *!*/
     background-color: #eeeeee;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Keeps it fixed while scrolling */
+    background-attachment: fixed;
 }
+
 .booking-button-container {
     text-align: center;
-    margin-top: 20px; /* Adjusts spacing so it's closer to the search bar */
+    margin-top: 20px;
 }
 
 .booking-button {
@@ -159,25 +89,41 @@ body {
     transform: scale(1.05);
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    margin-bottom: 10px;
+}
 
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
 
-/*.card {*/
-/*    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
-/*    transition: 0.3s;*/
-/*    border-radius: 5px; !* 5px rounded corners *!*/
-/*}*/
+.card-body {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
 
-/*!* Add rounded corners to the top left and the top right corner of the image *!*/
-/*img {*/
-/*    border-radius: 5px 5px 0 0;*/
-/*}*/
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
 
-/*!* On mouse-over, add a deeper shadow *!*/
-/*.card:hover {*/
-/*    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);*/
-/*}*/
-
-/*!* Add some padding inside the card container *!*/
-/*.container {*/
-/*    padding: 2px 16px;*/
-/*}*/
+.card-text {
+    font-size: 16px;
+    color: #555;
+}
