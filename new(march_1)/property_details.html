@@ -78,7 +78,7 @@
         <a href="schedule_booking.html">Schedule Booking</a>
         <a href="booking_confirmation.html">Booking Confirmation</a>
         <a href="contact.html">Contact</a>
-        <a class="active" href="faqs.html">FAQs</a>
+        <a href="faqs.html">FAQs</a>
         <a id="signin" href="sign_in.html">Sign in</a>
         <a id="dashboard" href="home_owner_page.html">Dashboard</a>
         <a id="logout" href="logout.html" onclick="logout()">Logout</a>
@@ -101,8 +101,34 @@
             <p><strong>Price:</strong> $250/night</p>
             <p><strong>Location:</strong> Miami, FL</p>
             <p>This luxurious beachfront villa offers stunning ocean views, a private pool, and spacious accommodations. Perfect for a relaxing vacation getaway.</p>
-            <button class="book-now">Book Now</button>
+            <button class="book-now" id="bookNowBtn">Book Now</button>
+            <p id="booking-status" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></p>
+
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let bookNowBtn = document.getElementById("bookNowBtn");
+            let bookingStatus = document.getElementById("booking-status");
+            let propertyName = document.querySelector(".property-info h2").textContent.trim(); // Extracts property name
+    
+            bookNowBtn.addEventListener("click", function () {
+                // Show system feedback
+                bookNowBtn.textContent = "Processing...";
+                bookNowBtn.disabled = true;
+    
+                // Simulate delay before redirect
+                setTimeout(() => {
+                    bookingStatus.textContent = "Redirecting to booking page...";
+                    bookingStatus.style.display = "block";
+    
+                    // Redirect to schedule booking page with property name in the URL
+                    setTimeout(() => {
+                        window.location.href = "schedule_booking.html?property=" + encodeURIComponent(propertyName);
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -94,7 +94,7 @@
             properties.forEach((property, index) => {
                 document.write(`
                         <div class="col-md-4 mb-4">
-                            <a href="schedule_booking.html" class="card-link" style="text-decoration: none; color: inherit;">
+                            <a href="schedule_booking.html?property=${property.title}" class="card-link" style="text-decoration: none; color: inherit;">
                                 <div class="card">
                                     <img src="${property.image}" class="card-img-top" alt="${property.title}">
                                     <div class="card-body">

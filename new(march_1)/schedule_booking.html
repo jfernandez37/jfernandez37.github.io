@@ -130,6 +130,25 @@
 
     <div class="schedule-container">
         <h1>Schedule Your Booking</h1>
+        <h2 id="selected-property">Booking for: [Property Name]</h2>
+        <script>
+            // Function to extract property name from URL
+            function getQueryParam(param) {
+                let urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            // Display the property name
+            document.addEventListener('DOMContentLoaded', function () {
+                let propertyName = getQueryParam('property');
+                if (propertyName) {
+                    document.getElementById('selected-property').textContent = "Booking for: " + propertyName;
+                } else {
+                    document.getElementById('selected-property').textContent = "No property selected!";
+                }
+            });
+        </script>
+        
         <div class="calendar-container">
             <div id="booking-calendar"></div>
         </div>
@@ -167,9 +186,18 @@
 
                     var bookingBtn = document.getElementsByClassName('booking-confirm-btn')[0];
                     bookingBtn.onclick = function() {
-                        alert("Booking confirmed!");
-                        modal.style.display = "none";
-                    }
+                        let propertyName = getQueryParam('property');
+                        let timeSlot = document.getElementById('time-slot').value;
+
+                        if (!propertyName) {
+                            alert("Error: You must select a property before booking!");
+                        } else {
+                            // Redirect to the Booking Confirmation page with booking details in the URL
+                            window.location.href = "booking_confirmation.html?property=" + encodeURIComponent(propertyName) + "&time=" + encodeURIComponent(timeSlot);
+                        }
+                    };
+
+
                 },
                 events: [
                     { title: 'Booked', start: '2025-03-10', end: '2025-03-15', color: 'red' }

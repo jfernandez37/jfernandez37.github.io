@@ -70,6 +70,7 @@
             window.location.href = "sign_in.html";
         }
     </script>
+    
     <div class="topnav">
         <a href="home_page.html">Home</a>
         <a href="listings.html">Listings</a>
@@ -90,17 +91,33 @@
             document.getElementById('dashboard').style.display='none';
             document.getElementById('logout').style.display='none';
         }
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            let propertyName = getQueryParam('property');
+            let timeSlot = getQueryParam('time');
+    
+            if (propertyName) {
+                document.getElementById('booking-property').textContent = "Property: " + propertyName;
+            }
+    
+            if (timeSlot) {
+                document.getElementById('booking-time').textContent = "Time Slot: " + timeSlot;
+            }
+        });
     </script>
+    
     
     <div class="confirmation-container">
         <h1>Booking Confirmation</h1>
         <p>Thank you for choosing our service! Please review your booking details below.</p>
         <div class="booking-summary">
-            <p><strong>Property:</strong> Beachfront Villa</p>
-            <p><strong>Check-in:</strong> March 15, 2025</p>
-            <p><strong>Check-out:</strong> March 20, 2025</p>
-            <p><strong>Total Cost:</strong> $1200</p>
-        </div>
+            <p id="booking-property"><strong>Property:</strong> Loading...</p>
+            <p id="booking-time"><strong>Time Slot:</strong> Loading...</p>
+        </div>        
         <h2>Payment Information</h2>
         <form class="payment-form">
             <label>Cardholder Name</label>
@@ -111,8 +128,41 @@
             <input type="month" required>
             <label>CVV</label>
             <input type="text" placeholder="123" required>
-            <button type="submit">Confirm Booking & Pay</button>
+            <button type="submit" id="pay-button">Confirm Booking & Pay</button>
+            <p id="payment-status" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></p>
         </form>
     </div>
+
+    <!-- Payment Processing -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let payButton = document.getElementById("pay-button");
+            let paymentStatus = document.getElementById("payment-status");
+
+            payButton.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                // Disable the button to prevent multiple clicks
+                payButton.disabled = true;
+                payButton.textContent = "Processing Payment...";
+
+                // Simulate a delay for processing payment (e.g., API call)
+                setTimeout(() => {
+                    payButton.textContent = "Payment Successful!";
+                    payButton.style.backgroundColor = "green";
+
+                    // Show status message
+                    paymentStatus.textContent = "Your booking has been confirmed! 🎉";
+                    paymentStatus.style.display = "block";
+
+                    // Redirect to a success page (optional)
+                    setTimeout(() => {
+                        window.location.href = "home_page.html"; // Redirect to home after 3 sec
+                    }, 3000);
+                }, 2000); // Simulated delay of 2 seconds
+            });
+        });
+    </script>
+
 </body>
 </html>
