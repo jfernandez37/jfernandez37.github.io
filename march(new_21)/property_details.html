@@ -1,0 +1,134 @@
+<!-- property_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .property-container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .property-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .property-info {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .property-info h2 {
+            color: #333;
+        }
+
+        .property-info p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .book-now {
+            background-color: #0465aa;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            text-align: center;
+        }
+
+        .book-now:hover {
+            background-color: #034c87;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a href="listings.html">Listings</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+    <script>
+        if (localStorage.getItem('isSignedIn') == "true" || localStorage.getItem("isSignedIn") == null){
+            document.getElementById('signin').style.display='none';
+        }
+        else{
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+    </script>
+    
+    <div class="property-container">
+        <img src="images/beachfront_villa.jpg" alt="Beachfront Villa">
+        <div class="property-info">
+            <h2>Beachfront Villa</h2>
+            <p><strong>Price:</strong> $250/night</p>
+            <p><strong>Location:</strong> Miami, FL</p>
+            <p>This luxurious beachfront villa offers stunning ocean views, a private pool, and spacious accommodations. Perfect for a relaxing vacation getaway.</p>
+            <button class="book-now" id="bookNowBtn">Book Now</button>
+            <p id="booking-status" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></p>
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let bookNowBtn = document.getElementById("bookNowBtn");
+            let bookingStatus = document.getElementById("booking-status");
+            let propertyName = document.querySelector(".property-info h2").textContent.trim(); // Extracts property name
+    
+            bookNowBtn.addEventListener("click", function () {
+                // Show system feedback
+                bookNowBtn.textContent = "Processing...";
+                bookNowBtn.disabled = true;
+    
+                // Simulate delay before redirect
+                setTimeout(() => {
+                    bookingStatus.textContent = "Redirecting to booking page...";
+                    bookingStatus.style.display = "block";
+    
+                    // Redirect to schedule booking page with property name in the URL
+                    setTimeout(() => {
+                        window.location.href = "schedule_booking.html?property=" + encodeURIComponent(propertyName);
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

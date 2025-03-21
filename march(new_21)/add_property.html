@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("isSignedIn") !== "true") {
+                window.location.href = "sign_in.html"; // Redirect to sign-in if not signed in
+            }
+        };
+    </script>
+    <title>Add New Property</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #0465aa;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #034c87;
+        }
+        .topnav {
+            background-color: #ddd;
+            overflow: hidden;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .topnav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        .topnav a.active {
+            background-color: #0465aa;
+            color: white;
+        }
+        button {
+            background-color: #0465aa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #034c87;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function logout() {
+        localStorage.setItem("isSignedIn", "false");
+        window.location.href = "sign_in.html";
+    }
+</script>
+<div class="topnav">
+    <a href="home_page.html">Home</a>
+    <a href="listings.html">Listings</a>
+    <a href="schedule_booking.html">Schedule Booking</a>
+    <a href="booking_confirmation.html">Booking Confirmation</a>
+    <a href="contact.html">Contact</a>
+    <a href="faqs.html">FAQs</a>
+    <a class="active" id="dashboard" href="home_owner_page.html">Dashboard</a>
+    <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+</div>
+
+<div class="container">
+    <a href="home_owner_page.html" class="back-button">&larr; Back</a>
+    <h1>Rent out your Property!</h1>
+    <form id="addPropertyForm">
+        <div class="form-group">
+            <label for="propertyName">Property Name</label>
+            <input type="text" class="form-control" id="propertyName" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price per Night ($)</label>
+            <input type="number" class="form-control" id="price" required>
+        </div>
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control" id="image" accept="image/*">
+        </div>
+        <button type="submit">Add Property</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("addPropertyForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Property added successfully!");
+        this.reset();
+    });
+</script>
+</body>
+</html>

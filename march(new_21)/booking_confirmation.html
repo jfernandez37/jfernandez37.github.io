@@ -1,0 +1,168 @@
+<!-- booking_confirmation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation & Payment</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .booking-summary {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .payment-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .payment-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .payment-form button {
+            background-color: #0465aa;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .payment-form button:hover {
+            background-color: #034c87;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
+    
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a href="listings.html">Listings</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a class="active" href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a id="signin" href="sign_in.html">Sign in</a>
+        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+    <script>
+        if (localStorage.getItem('isSignedIn') == "true" || localStorage.getItem("isSignedIn") == null){
+            document.getElementById('signin').style.display='none';
+        }
+        else{
+            document.getElementById('dashboard').style.display='none';
+            document.getElementById('logout').style.display='none';
+        }
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            let propertyName = getQueryParam('property');
+            let timeSlot = getQueryParam('time');
+    
+            if (propertyName) {
+                document.getElementById('booking-property').textContent = "Property: " + propertyName;
+            }
+    
+            if (timeSlot) {
+                document.getElementById('booking-time').textContent = "Time Slot: " + timeSlot;
+            }
+        });
+    </script>
+    
+    
+    <div class="confirmation-container">
+        <h1>Booking Confirmation</h1>
+        <p>Thank you for choosing our service! Please review your booking details below.</p>
+        <div class="booking-summary">
+            <p id="booking-property"><strong>Property:</strong> Loading...</p>
+            <p id="booking-time"><strong>Time Slot:</strong> Loading...</p>
+        </div>        
+        <h2>Payment Information</h2>
+        <form class="payment-form">
+            <label>Cardholder Name</label>
+            <input type="text" placeholder="John Doe" required>
+            <label>Card Number</label>
+            <input type="text" placeholder="**** **** **** 1234" required>
+            <label>Expiration Date</label>
+            <input type="month" required>
+            <label>CVV</label>
+            <input type="text" placeholder="123" required>
+            <button type="submit" id="pay-button">Confirm Booking & Pay</button>
+            <p id="payment-status" style="display: none; color: green; font-weight: bold; margin-top: 10px;"></p>
+        </form>
+    </div>
+
+    <!-- Payment Processing -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let payButton = document.getElementById("pay-button");
+            let paymentStatus = document.getElementById("payment-status");
+
+            payButton.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                // Disable the button to prevent multiple clicks
+                payButton.disabled = true;
+                payButton.textContent = "Processing Payment...";
+
+                // Simulate a delay for processing payment (e.g., API call)
+                setTimeout(() => {
+                    payButton.textContent = "Payment Successful!";
+                    payButton.style.backgroundColor = "green";
+
+                    // Show status message
+                    paymentStatus.textContent = "Your booking has been confirmed! 🎉";
+                    paymentStatus.style.display = "block";
+
+                    // Redirect to a success page (optional)
+                    setTimeout(() => {
+                        window.location.href = "home_page.html"; // Redirect to home after 3 sec
+                    }, 3000);
+                }, 2000); // Simulated delay of 2 seconds
+            });
+        });
+    </script>
+
+</body>
+</html>
