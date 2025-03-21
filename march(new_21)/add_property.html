@@ -135,10 +135,41 @@
 
 <script>
     document.getElementById("addPropertyForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+    event.preventDefault();
+
+    let propertyName = document.getElementById('propertyName').value.trim();
+    let location = document.getElementById('location').value.trim();
+    let price = document.getElementById('price').value.trim();
+    let imageInput = document.getElementById('image');
+
+    // Check for missing fields
+    if (!propertyName || !location || !price || !imageInput.files[0]) {
+        alert("Please complete all fields and upload an image.");
+        return; // Stop submission if incomplete
+    }
+
+      let reader = new FileReader();
+      reader.onload = function() {
+        let newProperty = {
+            name: propertyName,
+            location: location,
+            price: price,
+            image: reader.result 
+        };
+
+        // Retrieve existing properties from localStorage
+        let properties = JSON.parse(localStorage.getItem("properties") || "[]");
+        properties.push(newProperty);
+        
+        localStorage.setItem("properties", JSON.stringify(properties));
+
         alert("Property added successfully!");
-        this.reset();
-    });
+
+        document.getElementById("addPropertyForm").reset();
+    };
+    
+    reader.readAsDataURL(imageInput.files[0]);
+});
 </script>
 </body>
 </html>

@@ -135,33 +135,45 @@
 
     <!-- Payment Processing -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let payButton = document.getElementById("pay-button");
-            let paymentStatus = document.getElementById("payment-status");
-
-            payButton.addEventListener("click", function (event) {
-                event.preventDefault(); // Prevent actual form submission
-
-                // Disable the button to prevent multiple clicks
-                payButton.disabled = true;
-                payButton.textContent = "Processing Payment...";
-
-                // Simulate a delay for processing payment (e.g., API call)
-                setTimeout(() => {
-                    payButton.textContent = "Payment Successful!";
-                    payButton.style.backgroundColor = "green";
-
-                    // Show status message
-                    paymentStatus.textContent = "Your booking has been confirmed! 🎉";
-                    paymentStatus.style.display = "block";
-
-                    // Redirect to a success page (optional)
-                    setTimeout(() => {
-                        window.location.href = "home_page.html"; // Redirect to home after 3 sec
-                    }, 3000);
-                }, 2000); // Simulated delay of 2 seconds
+    document.addEventListener("DOMContentLoaded", function () {
+        let payButton = document.getElementById("pay-button");
+        let paymentStatus = document.getElementById("payment-status");
+        let inputs = document.querySelectorAll(".payment-form input");
+    
+        payButton.addEventListener("click", function (event) {
+            event.preventDefault();
+    
+            // Validation: check all fields
+            let valid = true;
+            inputs.forEach(input => {
+                if (input.value.trim() === "") {
+                    valid = false;
+                }
             });
+    
+            if (!valid) {
+                alert("Please fill out all payment fields before proceeding.");
+                return; // Stop the payment process here
+            }
+    
+            // Proceed if validation passes
+            payButton.disabled = true;
+            payButton.textContent = "Processing Payment...";
+    
+            setTimeout(() => {
+                payButton.textContent = "Payment Successful!";
+                payButton.style.backgroundColor = "green";
+    
+                paymentStatus.textContent = "Your booking has been confirmed! 🎉";
+                paymentStatus.style.display = "block";
+    
+                setTimeout(() => {
+                    window.location.href = "home_page.html";
+                }, 3000);
+            }, 2000);
         });
+    });
+        
     </script>
 
 </body>

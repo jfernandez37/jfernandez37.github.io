@@ -67,6 +67,8 @@
     <div class="row">
         <!-- Generating 3 columns and 7 rows -->
         <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let propertiesContainer = document.querySelector('.row');
             let properties = [
                 {image: 'images/home1.jpg', title: 'Cozy Cottage', price: '$120/night'},
                 {image: 'images/home2.jpg', title: 'Beachfront Escape', price: '$200/night'},
@@ -91,23 +93,45 @@
                 {image: 'images/home21.jpg', title: 'Bohemian Loft', price: '$195/night'}
             ];
 
-            properties.forEach((property, index) => {
-                document.write(`
-                        <div class="col-md-4 mb-4">
-                            <a href="schedule_booking.html?property=${property.title}" class="card-link" style="text-decoration: none; color: inherit;">
-                                <div class="card">
-                                    <img src="${property.image}" class="card-img-top" alt="${property.title}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${property.title}</h5>
-                                        <p class="card-text">${property.price}</p>
-                                    </div>
-                                </div>
-                            </a>
+            properties.forEach((property) => {
+            propertiesContainer.innerHTML += `
+                <div class="col-md-4 mb-4">
+                    <a href="schedule_booking.html?property=${encodeURIComponent(property.title)}" class="card-link" style="text-decoration: none; color: inherit;">
+                        <div class="card">
+                            <img src="${property.image}" class="card-img-top" alt="${property.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${property.title}</h5>
+                                <p class="card-text">${property.price}</p>
+                            </div>
                         </div>
-                    `);
-            });
-        </script>
-    </div>
+                    </a>
+                </div>
+            `;
+        });
+
+            //retrieve user-added properties from localStorage
+            let storedProperties = JSON.parse(localStorage.getItem("properties") || "[]");
+
+            //display user-added properties
+            storedProperties.forEach((property) => {
+                propertiesContainer.innerHTML += `
+                    <div class="col-md-4 mb-4">
+                        <a href="schedule_booking.html?property=${encodeURIComponent(property.name)}" class="card-link" style="text-decoration: none; color: inherit;">
+                            <div class="card">
+                                <img src="${property.image}" class="card-img-top" alt="${property.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${property.name}</h5>
+                                    <p class="card-text">$${property.price}/night</p>
+                                    <p class="card-text"><small>${property.location}</small></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+    });
+});
+</script>
+</div>
 </div>
 </body>
 </html>
