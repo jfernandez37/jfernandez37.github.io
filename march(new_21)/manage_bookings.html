@@ -102,21 +102,50 @@
     <a id="logout" href="logout.html" onclick="logout()">Logout</a>
 </div>
 
-<div class="container">
-    <a href="home_owner_page.html" class="back-button">&larr; Back</a>
-    <h1>Manage Your Bookings</h1>
-    <p>View and cancel your bookings below.</p>
-
-    <div class="booking-list">
-        <div id="booking-1" class="booking-item">
-            <span>Booking #1 - Beach House (March 10-15)</span>
-            <button onclick="cancelBooking(1)">Cancel</button>
-        </div>
-        <div id="booking-2" class="booking-item">
-            <span>Booking #2 - Mountain Cabin (April 5-10)</span>
-            <button onclick="cancelBooking(2)">Cancel</button>
-        </div>
+    <div class="container">
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let bookingList = document.querySelector(".booking-list");
+        
+                // Ensure bookingList element exists
+                if (!bookingList) {
+                    console.error("Error: .booking-list element not found!");
+                    return;
+                }
+        
+                // Retrieve stored bookings from localStorage
+                let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+        
+                if (bookings.length === 0) {
+                    bookingList.innerHTML = "<p>No bookings yet. Book a property from the Listings page!</p>";
+                    return;
+                }
+        
+                // Display all bookings dynamically
+                bookingList.innerHTML = ""; 
+                bookings.forEach((booking, index) => {
+                    bookingList.innerHTML += `
+                        <div id="booking-${index}" class="booking-item">
+                            <span>Booking #${index + 1} - ${booking.property} (${booking.startDate}) at ${booking.timeSlot}</span>
+                            <button onclick="cancelBooking(${index})">Cancel</button>
+                        </div>
+                    `;
+                });
+            });
+        
+            function cancelBooking(index) {
+                if (confirm("Are you sure you want to cancel this booking?")) {
+                    let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+                    bookings.splice(index, 1); // Remove the booking from the array
+                    localStorage.setItem("bookings", JSON.stringify(bookings));
+                    location.reload(); // Refresh the page to update the booking list
+                }
+            }
+        </script>
+        
+        <div class="booking-list">
+            <p>Loading bookings...</p>
+        </div>          
     </div>
-</div>
 </body>
 </html>

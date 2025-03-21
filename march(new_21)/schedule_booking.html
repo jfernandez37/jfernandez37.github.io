@@ -170,42 +170,53 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('booking-calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                selectable: true,
-                dateClick: function(info) {
-                    var modal = document.getElementById('booking-modal');
-                    var closeBtn = document.getElementsByClassName("close-btn")[0];
-                    modal.style.display = "block";
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('booking-calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            dateClick: function(info) {
+                var modal = document.getElementById('booking-modal');
+                var closeBtn = document.getElementsByClassName("close-btn")[0];
+                modal.style.display = "block";
 
-                    closeBtn.onclick = function() {
-                        modal.style.display = "none";
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                var bookingBtn = document.getElementsByClassName('booking-confirm-btn')[0];
+                bookingBtn.onclick = function() {
+                    let propertyName = getQueryParam('property');
+                    let timeSlot = document.getElementById('time-slot').value;
+
+                    if (!propertyName) {
+                        alert("Error: You must select a property before booking!");
+                        return;
                     }
 
-                    var bookingBtn = document.getElementsByClassName('booking-confirm-btn')[0];
-                    bookingBtn.onclick = function() {
-                        let propertyName = getQueryParam('property');
-                        let timeSlot = document.getElementById('time-slot').value;
+                    let startDate = info.dateStr; 
 
-                        if (!propertyName) {
-                            alert("Error: You must select a property before booking!");
-                        } else {
-                            // Redirect to the Booking Confirmation page with booking details in the URL
-                            window.location.href = "booking_confirmation.html?property=" + encodeURIComponent(propertyName) + "&time=" + encodeURIComponent(timeSlot);
-                        }
-                    };
+                    let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
 
+                    bookings.push({
+                        property: propertyName,
+                        startDate: startDate,
+                        timeSlot: timeSlot
+                    });
 
-                },
-                events: [
-                    { title: 'Booked', start: '2025-03-10', end: '2025-03-15', color: 'red' }
-                ]
-            });
-            calendar.render();
+                    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+                    alert("Booking confirmed!");
+
+                    window.location.href = "booking_confirmation.html?property=" + encodeURIComponent(propertyName) + "&date=" + encodeURIComponent(startDate) + "&time=" + encodeURIComponent(timeSlot);
+                };
+            }
         });
-    </script>
+
+        calendar.render();
+    });
+</script>
+
 
 </body>
 </html>
