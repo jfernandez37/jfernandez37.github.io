@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Property Listings</title>
+    <title>Listings</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 
     <script>
         function logout() {
@@ -66,76 +67,22 @@
     </style>
 </head>
 <body>
-<div class="container property-container">
-    <h2 class="text-center mb-4">Available Homes for Rent</h2>
-    <div class="row">
-        <!-- Generating 3 columns and 7 rows -->
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let propertiesContainer = document.querySelector('.row');
-            let properties = [
-                {image: 'images/home1.jpg', title: 'Cozy Cottage', price: '$120/night'},
-                {image: 'images/home2.jpg', title: 'Beachfront Escape', price: '$200/night'},
-                {image: 'images/home3.jpg', title: 'Modern Loft', price: '$150/night'},
-                {image: 'images/home4.jpg', title: 'Luxury Villa', price: '$300/night'},
-                {image: 'images/home5.jpg', title: 'Mountain Retreat', price: '$180/night'},
-                {image: 'images/home6.jpg', title: 'Urban Apartment', price: '$130/night'},
-                {image: 'images/home7.jpg', title: 'Quiet Countryside', price: '$110/night'},
-                {image: 'images/home8.jpg', title: 'Seaside Bungalow', price: '$190/night'},
-                {image: 'images/home9.jpg', title: 'Classic Cabin', price: '$140/night'},
-                {image: 'images/home10.jpg', title: 'Elegant Townhouse', price: '$250/night'},
-                {image: 'images/home11.jpg', title: 'Rustic Farmhouse', price: '$160/night'},
-                {image: 'images/home12.jpg', title: 'Beach House', price: '$220/night'},
-                {image: 'images/home13.jpg', title: 'Hillside Haven', price: '$170/night'},
-                {image: 'images/home14.jpg', title: 'Skyline Penthouse', price: '$400/night'},
-                {image: 'images/home15.jpg', title: 'Lakeside Retreat', price: '$175/night'},
-                {image: 'images/home16.jpg', title: 'Tropical Paradise', price: '$280/night'},
-                {image: 'images/home17.jpg', title: 'Forest Lodge', price: '$150/night'},
-                {image: 'images/home18.jpg', title: 'Ski Chalet', price: '$200/night'},
-                {image: 'images/home19.jpg', title: 'Desert Getaway', price: '$135/night'},
-                {image: 'images/home20.jpg', title: 'Suburban Home', price: '$145/night'},
-                {image: 'images/home21.jpg', title: 'Bohemian Loft', price: '$195/night'}
-            ];
-
-            properties.forEach((property) => {
-            propertiesContainer.innerHTML += `
-                <div class="col-md-4 mb-4">
-                    <a href="schedule_booking.html?property=${encodeURIComponent(property.title)}" class="card-link" style="text-decoration: none; color: inherit;">
-                        <div class="card">
-                            <img src="${property.image}" class="card-img-top" alt="${property.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${property.title}</h5>
-                                <p class="card-text">${property.price}</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            `;
-        });
-
-            //retrieve user-added properties from localStorage
-            let storedProperties = JSON.parse(localStorage.getItem("properties") || "[]");
-
-            //display user-added properties
-            storedProperties.forEach((property) => {
-                propertiesContainer.innerHTML += `
-                    <div class="col-md-4 mb-4">
-                        <a href="schedule_booking.html?property=${encodeURIComponent(property.name)}" class="card-link" style="text-decoration: none; color: inherit;">
-                            <div class="card">
-                                <img src="${property.image}" class="card-img-top" alt="${property.name}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${property.name}</h5>
-                                    <p class="card-text">$${property.price}/night</p>
-                                    <p class="card-text"><small>${property.location}</small></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                `;
-    });
-});
-</script>
-</div>
+<div class="container">
+    <h2 class="text-center">Available Listings</h2>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="filterInput" class="form-control" placeholder="Filter by name...">
+        </div>
+        <div class="col-md-6">
+            <select id="sortSelect" class="form-control">
+                <option value="">Sort by</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" id="listingsContainer">
+    </div>
 </div>
 </body>
 </html>
