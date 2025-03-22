@@ -92,85 +92,87 @@
     </style>
 </head>
 <body>
-<script>
-    function logout() {
-        localStorage.setItem("isSignedIn", "false");
-        window.location.href = "sign_in.html";
-    }
-</script>
-<div class="topnav">
-    <a href="home_page.html">Home</a>
-    <a href="listings.html">Listings</a>
-    <a href="schedule_booking.html">Schedule Booking</a>
-    <a href="booking_confirmation.html">Booking Confirmation</a>
-    <a href="contact.html">Contact</a>
-    <a href="faqs.html">FAQs</a>
-    <a class="active" id="dashboard" href="home_owner_page.html">Dashboard</a>
-    <a id="logout" href="logout.html" onclick="logout()">Logout</a>
-</div>
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
 
-<div class="container">
-    <a href="home_owner_page.html" class="back-button">&larr; Back</a>
-    <h1>Rent out your Property!</h1>
-    <form id="addPropertyForm">
-        <div class="form-group">
-            <label for="propertyName">Property Name</label>
-            <input type="text" class="form-control" id="propertyName" required>
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a href="listings.html">Listings</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a id="manage_bookings" href="manage_bookings.html">Manage Bookings</a>
+        <a class="active" id="add_property" href="add_property.html">Add Your Property</a>
+        <a id="account_settings" href="home_owner_settings.html">Account Settings</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+        <div class="container">
+            <h1>Rent out your Property!</h1>
+            <form id="addPropertyForm">
+                <div class="form-group">
+                    <label for="propertyName">Property Name</label>
+                    <input type="text" class="form-control" id="propertyName" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price per Night ($)</label>
+                    <input type="number" class="form-control" id="price" min="0" max="50000" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" class="form-control" id="image" accept="image/*">
+                </div>
+                <button type="submit">Add Property</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" class="form-control" id="location" required>
-        </div>
-        <div class="form-group">
-            <label for="price">Price per Night ($)</label>
-            <input type="number" class="form-control" id="price" min="0" max="50000" required>
 
-        </div>
-        <div class="form-group">
-            <label for="image">Upload Image</label>
-            <input type="file" class="form-control" id="image" accept="image/*">
-        </div>
-        <button type="submit">Add Property</button>
-    </form>
-</div>
+        <script>
+            document.getElementById("addPropertyForm").addEventListener("submit", function(event) {
+            event.preventDefault();
 
-<script>
-    document.getElementById("addPropertyForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+            let propertyName = document.getElementById('propertyName').value.trim();
+            let location = document.getElementById('location').value.trim();
+            let price = document.getElementById('price').value.trim();
+            let imageInput = document.getElementById('image');
 
-    let propertyName = document.getElementById('propertyName').value.trim();
-    let location = document.getElementById('location').value.trim();
-    let price = document.getElementById('price').value.trim();
-    let imageInput = document.getElementById('image');
+            // Check for missing fields
+            if (!propertyName || !location || !price || !imageInput.files[0]) {
+                alert("Please complete all fields and upload an image.");
+                return; // Stop submission if incomplete
+            }
 
-    // Check for missing fields
-    if (!propertyName || !location || !price || !imageInput.files[0]) {
-        alert("Please complete all fields and upload an image.");
-        return; // Stop submission if incomplete
-    }
+              let reader = new FileReader();
+              reader.onload = function() {
+                let newProperty = {
+                    name: propertyName,
+                    location: location,
+                    price: price,
+                    image: reader.result
+                };
 
-      let reader = new FileReader();
-      reader.onload = function() {
-        let newProperty = {
-            name: propertyName,
-            location: location,
-            price: price,
-            image: reader.result 
-        };
+                // Retrieve existing properties from localStorage
+                let properties = JSON.parse(localStorage.getItem("properties") || "[]");
+                properties.push(newProperty);
 
-        // Retrieve existing properties from localStorage
-        let properties = JSON.parse(localStorage.getItem("properties") || "[]");
-        properties.push(newProperty);
-        
-        localStorage.setItem("properties", JSON.stringify(properties));
+                localStorage.setItem("properties", JSON.stringify(properties));
 
-        alert("Property added successfully!");
+                alert("Property added successfully!");
 
-        document.getElementById("addPropertyForm").reset();
-    };
-    
-    reader.readAsDataURL(imageInput.files[0]);
-});
-</script>
-</body>
+                document.getElementById("addPropertyForm").reset();
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        });
+        </script>
+    </body>
 </html>

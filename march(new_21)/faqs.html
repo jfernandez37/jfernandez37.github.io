@@ -54,6 +54,7 @@
             window.location.href = "sign_in.html";
         }
     </script>
+
     <div class="topnav">
         <a href="home_page.html">Home</a>
         <a href="listings.html">Listings</a>
@@ -62,17 +63,21 @@
         <a href="contact.html">Contact</a>
         <a class="active" href="faqs.html">FAQs</a>
         <a id="signin" href="sign_in.html">Sign in</a>
-        <a id="dashboard" href="home_owner_page.html">Dashboard</a>
+        <a id="manage_bookings" href="manage_bookings.html">Manage Bookings</a>
+        <a id="add_property" href="add_property.html">Add Your Property</a>
+        <a id="account_settings" href="home_owner_settings.html">Account Settings</a>
         <a id="logout" href="logout.html" onclick="logout()">Logout</a>
     </div>
 
     <script>
-        if (localStorage.getItem('isSignedIn') == "true" || localStorage.getItem("isSignedIn") == null){
-            document.getElementById('signin').style.display='none';
+        if (localStorage.getItem('isSignedIn') == "false"){
+            document.getElementById('manage_bookings').style.display='none';
+            document.getElementById('add_property').style.display='none';
+            document.getElementById('account_settings').style.display='none';
+            document.getElementById('logout').style.display='none';
         }
         else{
-            document.getElementById('dashboard').style.display='none';
-            document.getElementById('logout').style.display='none';
+            document.getElementById('signin').style.display='none';
         }
     </script>
     
