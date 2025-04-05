@@ -82,7 +82,17 @@ function loadListings() {
     const listingsContainer = document.getElementById("listingsContainer");
     if (!listingsContainer) return;
     listingsContainer.innerHTML = "";
-    let filteredProperties = [...properties];
+
+    let userProperties = JSON.parse(localStorage.getItem("properties") || "[]");
+
+    let formattedUserProperties = userProperties.map(p => ({
+        image: p.image,
+        title: p.name,
+        price: parseFloat(p.price)
+    }));
+
+    let allProperties = [...properties, ...formattedUserProperties];
+    let filteredProperties = [...allProperties];
 
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get("search");
@@ -117,3 +127,4 @@ function loadListings() {
             </div>`;
     });
 }
+
