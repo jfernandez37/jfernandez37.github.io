@@ -95,37 +95,50 @@
             document.getElementById('add_property').style.display='none';
             document.getElementById('account_settings').style.display='none';
             document.getElementById('logout').style.display='none';
-        }
-        else{
+        } else {
             document.getElementById('signin').style.display='none';
         }
+
         function getQueryParam(param) {
             let urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
-    
+
         document.addEventListener('DOMContentLoaded', function () {
             let propertyName = getQueryParam('property');
             let timeSlot = getQueryParam('time');
-    
+
+            const propertyEl = document.getElementById('booking-property');
+            const timeSlotEl = document.getElementById('booking-time');
+
             if (propertyName) {
-                document.getElementById('booking-property').textContent = "Property: " + propertyName;
+                propertyEl.textContent = "Property: " + propertyName;
             }
-    
+
             if (timeSlot) {
-                document.getElementById('booking-time').textContent = "Time Slot: " + timeSlot;
+                timeSlotEl.textContent = "Time Slot: " + timeSlot;
             }
+
+            setTimeout(() => {
+                if (!propertyName) {
+                    propertyEl.innerHTML = "<strong>Property:</strong> (Not available. <a href='schedule_booking.html'>Return to booking</a>)";
+                    propertyEl.style.color = "red";
+                }
+                if (!timeSlot) {
+                    timeSlotEl.innerHTML = "<strong>Time Slot:</strong> (Not available. <a href='schedule_booking.html'>Return to booking</a>)";
+                    timeSlotEl.style.color = "red";
+                }
+            }, 3000);
         });
     </script>
-    
-    
+
     <div class="confirmation-container">
         <h1>Booking Confirmation</h1>
         <p>Thank you for choosing our service! Please review your booking details below.</p>
         <div class="booking-summary">
             <p id="booking-property"><strong>Property:</strong> Loading...</p>
             <p id="booking-time"><strong>Time Slot:</strong> Loading...</p>
-        </div>        
+        </div>
         <h2>Payment Information</h2>
         <div class="payment-form" style="max-width: 400px; margin: 0 auto; text-align: center;">
             <form class="payment-form">
@@ -145,46 +158,42 @@
 
     <!-- Payment Processing -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let payButton = document.getElementById("pay-button");
-        let paymentStatus = document.getElementById("payment-status");
-        let inputs = document.querySelectorAll(".payment-form input");
-    
-        payButton.addEventListener("click", function (event) {
-            event.preventDefault();
-    
-            // Validation: check all fields
-            let valid = true;
-            inputs.forEach(input => {
-                if (input.value.trim() === "") {
-                    valid = false;
-                }
-            });
-    
-            if (!valid) {
-                alert("Please fill out all payment fields before proceeding.");
-                return; // Stop the payment process here
-            }
-    
-            // Proceed if validation passes
-            payButton.disabled = true;
-            payButton.textContent = "Processing Payment...";
-    
-            setTimeout(() => {
-                payButton.textContent = "Payment Successful!";
-                payButton.style.backgroundColor = "green";
-    
-                paymentStatus.textContent = "Your booking has been confirmed! 🎉";
-                paymentStatus.style.display = "block";
-    
-                setTimeout(() => {
-                    window.location.href = "home_page.html";
-                }, 3000);
-            }, 2000);
-        });
-    });
-        
-    </script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let payButton = document.getElementById("pay-button");
+            let paymentStatus = document.getElementById("payment-status");
+            let inputs = document.querySelectorAll(".payment-form input");
 
+            payButton.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                let valid = true;
+                inputs.forEach(input => {
+                    if (input.value.trim() === "") {
+                        valid = false;
+                    }
+                });
+
+                if (!valid) {
+                    alert("Please fill out all payment fields before proceeding.");
+                    return;
+                }
+
+                payButton.disabled = true;
+                payButton.textContent = "Processing Payment...";
+
+                setTimeout(() => {
+                    payButton.textContent = "Payment Successful!";
+                    payButton.style.backgroundColor = "green";
+
+                    paymentStatus.textContent = "Your booking has been confirmed! 🎉";
+                    paymentStatus.style.display = "block";
+
+                    setTimeout(() => {
+                        window.location.href = "home_page.html";
+                    }, 3000);
+                }, 2000);
+            });
+        });
+    </script>
 </body>
 </html>
