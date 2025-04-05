@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("isSignedIn") !== "true") {
+                window.location.href = "sign_in.html"; // Redirect to sign-in if not signed in
+            }
+        };
+    </script>
+    <title>Manage Bookings</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #0465aa;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #034c87;
+        }
+        button {
+            background-color: #0465aa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #034c87;
+        }
+        .booking-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .booking-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function cancelBooking(bookingId) {
+            if (confirm('Are you sure you want to cancel this booking?')) {
+                document.getElementById('booking-' + bookingId).remove();
+            }
+        }
+    </script>
+</head>
+<body>
+    <script>
+        function logout() {
+            localStorage.setItem("isSignedIn", "false");
+            window.location.href = "sign_in.html";
+        }
+    </script>
+
+    <div class="topnav">
+        <a href="home_page.html">Home</a>
+        <a href="listings.html">Listings</a>
+        <a href="schedule_booking.html">Schedule Booking</a>
+        <a href="booking_confirmation.html">Booking Confirmation</a>
+        <a href="contact.html">Contact</a>
+        <a href="faqs.html">FAQs</a>
+        <a class="active" id="manage_bookings" href="manage_bookings.html">Manage Bookings</a>
+        <a id="add_property" href="add_property.html">Add Your Property</a>
+        <a id="account_settings" href="home_owner_settings.html">Account Settings</a>
+        <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Manage Bookings</h2>
+        <div class="booking-list">
+            <p>Loading bookings...</p>
+        </div>
+    </div>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let bookingList = document.querySelector(".booking-list");
+        
+                // Ensure bookingList element exists
+                if (!bookingList) {
+                    console.error("Error: .booking-list element not found!");
+                    return;
+                }
+        
+                // Retrieve stored bookings from localStorage
+                let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+        
+                if (bookings.length === 0) {
+                    bookingList.innerHTML = "<p>No bookings yet. Book a property from the Listings page!</p>";
+                    return;
+                }
+        
+                // Display all bookings dynamically
+                bookingList.innerHTML = ""; 
+                bookings.forEach((booking, index) => {
+                    bookingList.innerHTML += `
+                        <div id="booking-${index}" class="booking-item">
+                            <span>Booking #${index + 1} - ${booking.property} (${booking.startDate}) at ${booking.timeSlot}</span>
+                            <button onclick="cancelBooking(${index})">Cancel</button>
+                        </div>
+                    `;
+                });
+            });
+        
+            function cancelBooking(index) {
+                if (confirm("Are you sure you want to cancel this booking?")) {
+                    let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+                    bookings.splice(index, 1); // Remove the booking from the array
+                    localStorage.setItem("bookings", JSON.stringify(bookings));
+                    location.reload(); // Refresh the page to update the booking list
+                }
+            }
+        </script>
+                  
+    </div>
+</body>
+</html>
