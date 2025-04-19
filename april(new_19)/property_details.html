@@ -10,7 +10,6 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
         }
 
@@ -64,8 +63,6 @@
             background-color: #034c87;
         }
     </style>
-</head>
-<body>
     <script>
         function logout() {
             localStorage.setItem("isSignedIn", "false");
@@ -102,6 +99,8 @@
             document.getElementById('signin').style.display='none';
         }
     </script>
+</head>
+<body>
     
     <div class="property-container">
         <img src="images/beachfront_villa.jpg" alt="Beachfront Villa">

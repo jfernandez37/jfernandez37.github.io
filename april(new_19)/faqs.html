@@ -10,7 +10,6 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
         }
 
@@ -46,8 +45,6 @@
             border-radius: 5px;
         }
     </style>
-</head>
-<body>
     <script>
         function logout() {
             localStorage.setItem("isSignedIn", "false");
@@ -84,6 +81,8 @@
             document.getElementById('signin').style.display='none';
         }
     </script>
+</head>
+<body>
     
     <div class="faq-container">
         <h1>Frequently Asked Questions</h1>
