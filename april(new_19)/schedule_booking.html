@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .schedule-container {
+            max-width: 800px;
+            margin: 150px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .calendar-container {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .fc-toolbar {
+            background-color: #0465aa;
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .fc-button {
+            background-color: #0465aa !important;
+            border: none !important;
+            color: white !important;
+            border-radius: 6px !important;
+            padding: 5px 10px !important;
+        }
+
+        .fc-button:hover {
+            background-color: #034c87 !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 60%;
+            max-width: 400px;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+        .booking-confirm-btn {
+            background-color: #0465aa;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .booking-confirm-btn:hover {
+            background-color: #034c87;
+        }
+
+        #selected-property {
+            color: #d9534f;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #selected-property a {
+            color: #0275d8;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    function logout() {
+        localStorage.setItem("isSignedIn", "false");
+        window.location.href = "sign_in.html";
+    }
+</script>
+
+<div class="topnav">
+    <a href="home_page.html">Home</a>
+    <a href="listings.html">Listings</a>
+    <a class="active" href="schedule_booking.html">Schedule Booking</a>
+    <a href="booking_confirmation.html">Booking Confirmation</a>
+    <a href="contact.html">Contact</a>
+    <a href="faqs.html">FAQs</a>
+    <a id="signin" href="sign_in.html">Sign in</a>
+    <a id="manage_bookings" href="manage_bookings.html">Manage Bookings</a>
+    <a id="add_property" href="add_property.html">Add Your Property</a>
+    <a id="account_settings" href="home_owner_settings.html">Account Settings</a>
+    <a id="logout" href="logout.html" onclick="logout()">Logout</a>
+</div>
+
+<script>
+    if (localStorage.getItem('isSignedIn') == "false"){
+        document.getElementById('manage_bookings').style.display='none';
+        document.getElementById('add_property').style.display='none';
+        document.getElementById('account_settings').style.display='none';
+        document.getElementById('logout').style.display='none';
+    }
+    else{
+        document.getElementById('signin').style.display='none';
+    }
+</script>
+
+<div class="schedule-container">
+    <h1>Schedule Your Booking</h1>
+    <h2 id="selected-property"></h2>
+    <div class="calendar-container">
+        <div id="booking-calendar"></div>
+    </div>
+</div>
+
+<!-- Modal for booking details -->
+<div id="booking-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Booking Details</h2>
+        <label for="time-slot">Choose a Time Slot:</label>
+        <select id="time-slot">
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+        </select>
+        <button class="booking-confirm-btn">Confirm Booking</button>
+    </div>
+</div>
+
+<script>
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let propertyName = getQueryParam('property');
+        let selectedPropertyText = document.getElementById('selected-property');
+        let calendarEl = document.getElementById('booking-calendar');
+
+        if (propertyName) {
+            selectedPropertyText.textContent = "Booking for: " + propertyName;
+            calendarEl.style.pointerEvents = 'auto';
+        } else {
+            selectedPropertyText.innerHTML = "No property selected! Please select a property from the <a href='listings.html'>Listings</a> page.";
+            calendarEl.style.pointerEvents = 'none';
+        }
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            dateClick: function(info) {
+                var modal = document.getElementById('booking-modal');
+                var closeBtn = document.getElementsByClassName("close-btn")[0];
+                modal.style.display = "block";
+
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                var bookingBtn = document.getElementsByClassName('booking-confirm-btn')[0];
+                bookingBtn.onclick = function() {
+                    let propertyName = getQueryParam('property');
+                    let timeSlot = document.getElementById('time-slot').value;
+
+                    if (!propertyName) {
+                        alert("Error: You must select a property before booking!");
+                        return;
+                    }
+
+                    let startDate = info.dateStr;
+
+                    let bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+
+                    bookings.push({
+                        property: propertyName,
+                        startDate: startDate,
+                        timeSlot: timeSlot
+                    });
+
+                    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+                    alert("Booking confirmed!");
+
+                    window.location.href = "booking_confirmation.html?property=" + encodeURIComponent(propertyName) + "&date=" + encodeURIComponent(startDate) + "&time=" + encodeURIComponent(timeSlot);
+                };
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
+</body>
+</html>
