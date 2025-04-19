@@ -102,11 +102,19 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
     border-radius: 10px;
     overflow: hidden;
     height: 100%;
     margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ddd;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #0465aa;
+    background-color: #f1faff;
 }
 
 .card img {
@@ -123,6 +131,12 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.card:hover .card-body {
+    background-color: #f1faff;
 }
 
 .card-title {
