@@ -148,10 +148,9 @@
             let price = document.getElementById('price').value.trim();
             let imageInput = document.getElementById('image');
 
-            // Check for missing fields
             if (!propertyName || !location || !price || !imageInput.files[0]) {
                 alert("Please complete all fields and upload an image.");
-                return; // Stop submission if incomplete
+                return; 
             }
 
               let reader = new FileReader();
@@ -163,7 +162,6 @@
                     image: reader.result
                 };
 
-                // Retrieve existing properties from localStorage
                 let properties = JSON.parse(localStorage.getItem("properties") || "[]");
                 properties.push(newProperty);
 

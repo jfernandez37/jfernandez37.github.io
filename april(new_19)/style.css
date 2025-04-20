@@ -29,7 +29,17 @@ body, html {
     text-decoration: none;
     padding: 10px 20px;
     font-size: 18px;
+    white-space: nowrap;
+    line-height: 1;
+    display: inline-block;
+    font-family: Arial, sans-serif;
 }
+
+.topnav a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
 
 .topnav a.active {
     background-color: #0465aa;
@@ -75,6 +85,10 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding-top: 100px;
+}
+
+body.account-page .imageRound {
+    margin-top: 80px;
 }
 
 .booking-button-container {
@@ -168,4 +182,147 @@ body {
     margin-top: 60px;
 }
 
+body.schedule-booking-page .schedule-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
 
+body.schedule-booking-page .calendar-container {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+body.schedule-booking-page .fc-toolbar {
+    background-color: #0465aa;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+body.schedule-booking-page .fc-button {
+    background-color: #0465aa !important;
+    border: none !important;
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 5px 10px !important;
+}
+
+body.schedule-booking-page .fc-button:hover {
+    background-color: #034c87 !important;
+}
+
+body.schedule-booking-page .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+body.schedule-booking-page .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 400px;
+}
+
+body.schedule-booking-page .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+body.schedule-booking-page .close-btn:hover {
+    color: black;
+    cursor: pointer;
+}
+
+body.schedule-booking-page .booking-confirm-btn {
+    background-color: #0465aa;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+body.schedule-booking-page .booking-confirm-btn:hover {
+    background-color: #034c87;
+}
+
+body.schedule-booking-page #selected-property {
+    color: #d9534f;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+body.schedule-booking-page #selected-property a {
+    color: #0275d8;
+    text-decoration: underline;
+}
+body.booking-confirmation-page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.booking-confirmation-page .confirmation-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.booking-confirmation-page .booking-summary {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.booking-confirmation-page .payment-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.booking-confirmation-page .payment-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.booking-confirmation-page .payment-form button {
+    background-color: #0465aa;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.booking-confirmation-page .payment-form button:hover {
+    background-color: #034c87;
+}
